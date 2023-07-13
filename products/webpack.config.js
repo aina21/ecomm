@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -21,6 +22,9 @@ module.exports = {
           singleton: true,
         },
       },
+    }),
+    new webpack.DefinePlugin({
+      "process.env.APP_ENV": JSON.stringify(process.env.APP_ENV),
     }),
   ],
 };
